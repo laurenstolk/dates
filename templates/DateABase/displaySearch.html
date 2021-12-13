@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<h1 > Prescriber Search Results</h1><br><br>
+
+            {% for datey in datedata %}
+                <h3> {{ datey.dateName }}: </h3>
+                    <p>  Date Type: {{datey.dateTypeID}} 
+                    <br> Rating: {{datey.rating}} 
+                    <br> Location: {{datey.locationName}} 
+                    <br> Price: {{datey.priceRating}} 
+                    <br> Season: 
+                    {% for datey in seasondata %}
+                        {{datey.season}}, 
+                    {% endfor %}
+
+                <br><br><br>
+            {% endfor %}
+        </div>
+    </center>
+</section>
+{% endblock %}

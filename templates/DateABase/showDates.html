@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<head class="indexbg">
+    <img class="contain" src="../../static/img/sunsetDrive.jpg" alt="pic of couple on car" style="width:100%;" >
+</head>
+
+<section class="page-section" id="submitDate">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="text-center text-white font-weight-bold text-uppercase">Dates</h2>
+            <h3 class="section-subheading text-center text-white font-weight-bold">Check out these awesome dates!</h3>
+        </div>
+    </div>
+</section>
+<div class="container text-white font-weight-bold">
+    <h1><b>DATE IDEA LIST</b></h1>
+    <br><br>
+    <div class="container">
+        <table class="text-white font-weight-bold table">
+            <thead>
+                <tr>
+                    <th scope="col">Date Name</th>
+                    <th scope="col">Date Type</th>
+                    <th scope="col">Rating</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Price Rating</th>
+                    <th scope="col">Best Season</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for date in dlist %}
+                <tr>
+                    <th scope="row"> {{ date.dateName }}</td>
+                    <td> {{date.dateTypeID}} </td>
+                    <td> {{date.rating}} </td>
+                    <td> {{date.locationName}} </td>
+                    <td> {{date.priceRating}} </td>
+                    <td> {% for season in date.date_season.all %}
+                            {{ season.season}},        
+                        {% endfor %}
+                    </td>
+                    <td><a class="btn btn-primary" href="{% url 'updateDate' date_id=date.id %}">Edit</a> </td>
+                    <td><a class="btn btn-primary" href="{% url 'deleteDate' date_id=date.id %}">Delete</a></td>
+                    <td
+                    <br>
+                {% endfor %} 
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %} 

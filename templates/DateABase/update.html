@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- this template will receive information about a new date (date name, type, 
+    rating, location, price rating, group size, and comments) from the user -->
+<body class="update">
+<section class="page-section" id="submitDate">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading text-uppercase">Dates</h2>
+            <h3 class="section-subheading">Update Date</h3>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+    <div class="text-left">
+        <h2 class="section-heading text-uppercase">Update Date</h2>
+    </div>
+    <br>
+    <form name="form" method="post" action="{% url 'sendupdateDate' %}">
+        {% csrf_token %}
+        <input type="hidden" id="date_id" name="date_id" value="{{dlist.id}}">
+
+        <label for='newdateName'>Date Name:</label>
+            <input type="text" name='newdateName' id='newdateName' value="{{dlist.dateName}}" autofocus>
+            <br><br>
+
+            <label for='newdateType'>Date Type:</label>
+            <select name='newdateType' value="{{dlist.dateTypeID}}">
+                <option value="1">Breakfast</option>
+                <option value="2">Lunch</option>
+                <option value="3">Dinner</option>
+                <option value="4">Dessert</option>
+                <option value="5">Crafts</option>
+                <option value="6">Athletics</option>
+                <option value="7">Entertainment</option>
+                <option value="8">Events</option>
+                <option value="9">Hangouts</option>
+            </select>
+            <br><br>
+
+            <label for='newrating'>Rating:</label>
+            <select name='newrating' id='newrating' value="{{dlist.rating}}">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <br><br>
+
+            <label for='newlocationName'>Location:</label>
+            <input type="text", name='newlocationName', id='newlocationName' value="{{dlist.locationName}}">
+            <br> <br>
+
+            <label for='newpRating'>Price:</label>
+            <select name='newpRating' id='newpRating' value="{{dlist.priceRating}}">
+                <option value=1>$</option>
+                <option value=2>$$</option>
+                <option value=3>$$$</option>
+                <option value=4>$$$$</option>
+            </select>
+            <br><br>
+
+            {% comment %} <label for='newdate_season'>Season:</label>
+            <select name='newdate_season' id='newdate_season' value="{{dlist.date_season}}" multiple>
+                <option value="1">Winter</option>
+                <option value="2">Spring</option>
+                <option value="3">Summer</option>
+                <option value="4">Fall</option>
+            </select> {% endcomment %}
+
+             <b>List of Seasons:</b>
+             {% for season in seasondata %}
+                <p> {{ season.season }} </p>
+            {% endfor %} 
+            <br><br>                   
+        <button type="submit">Update</button>
+        </form>
+</div>
+</body>
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<head class="indexbg">
+    <img class="contain" src="../../static/img/dinnerDate.jpg" alt="pic of fastfood" style="width:100%;" >
+</head>
+
+<!-- this template will receive information about a new date (date name, type, 
+    rating, location, price rating, group size, and comments) from the user -->
+<section class="page-section" id="submitDate">
+    <div class="container text-white font-weight-bold">
+        <div class="text-center">
+            <h2 class="section-heading text-uppercase">Dates</h2>
+            <h3 class="section-subheading">Add a New Date</h3>
+        </div>
+    </div>
+</section>
+
+<div class="container text-white font-weight-bold">
+    <div class="text-center text-white font-weight-bold">
+        <h2 class="section-heading text-uppercase ">Add Date</h2>
+    </div>
+    <br>
+    <form name="form" method="post" action="{% url 'saveDate' %}">
+        {% csrf_token %}
+        <label for='dateName'>Date Name:</label>
+        <input type="text" name='dateName' id='dateName' autofocus>
+        <br><br>
+
+        <label for='dateType'>Date Type:</label>
+        <select name='dateType'>
+            <option value="1">Breakfast</option>
+            <option value="2">Lunch</option>
+            <option value="3">Dinner</option>
+            <option value="4">Dessert</option>
+            <option value="5">Crafts</option>
+            <option value="6">Athletics</option>
+            <option value="7">Entertainment</option>
+            <option value="8">Events</option>
+            <option value="9">Hangouts</option>
+        </select>
+        <br><br>
+
+        <label for='rating'>Rating:</label>
+        <select name='rating' id='rating'>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <br><br>
+
+        <label for='locationName'>Location:</label>
+        <input type="text", name='locationName', id='locationName'>
+        <br> <br>
+
+        <label for="pRating">Price:</label>
+        <select name="pRating" id="pRating">
+            <option value="1">$</option>
+            <option value="2">$$</option>
+            <option value="3">$$$</option>
+            <option value="4">$$$$</option>
+        </select>
+        <br><br>
+
+        <label for="date_season">Season:</label>
+        <select name="date_season" id="date_season" multiple>
+            <option value="1">Winter</option>
+            <option value="2">Spring</option>
+            <option value="3">Summer</option>
+            <option value="4">Fall</option>
+        </select>
+        <br><br>                   
+       
+    <button type="submit">Submit</button>
+    </form>
+</div>
+{% endblock %}

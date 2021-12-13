@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- this template will collect filter information from the user 
+    to then return specific date ideas that satisfy the desired filter -->
+
+    <center>
+        <h1 > Search by Dates </h1>
+    </center>
+
+
+    <form name="form" method="get" action="{% url 'searchDate' %}" >
+        <label for="dateName">Search by dates</label>
+        <input type="text" name='dateName' id='dateName' placeholder="date...">
+        <br><br>
+        <button type="submit">Search</button>
+    </form>
+
+{% endblock %}
